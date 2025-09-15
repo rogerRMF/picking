@@ -147,7 +147,7 @@ if arquivo is not None:
                         st.markdown(
                             f"""
                            <div class="metric-card" style="
-                                background-color:#f7f7f7;
+                                background-color:#fff;
                                 color:#333;
                                 padding:4px;
                                 border-radius:10px;
@@ -158,7 +158,7 @@ if arquivo is not None:
                                 box-shadow: 1px 1px 4px rgba(0,0,0,0.08);
                                 text-align:center;
                             ">
-                                <div style="font-size:14px; margin-bottom:2px;">{hora}<span>{icone}</span></div>
+                                <div style="font-size:14px; margin-bottom:2px;">{icone}<span>{hora}</span></div>
                                 <div style="font-size:18px; font-weight:bold;">{valor} </div>
                             </div>
                             """,
