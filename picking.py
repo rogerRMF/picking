@@ -80,8 +80,8 @@ if arquivo is not None:
         df_soma = df.groupby("Usuario").sum().reset_index()
 
         # Mostra tabela com usuários únicos
-        #st.markdown("### 📊 Usuários únicos")
-        #st.dataframe(df[["Usuario"]], use_container_width=True)
+        # st.markdown("### 📊 Usuários únicos")
+        # st.dataframe(df[["Usuario"]], use_container_width=True)
 
         # Calcula total geral por usuário
         df_soma["Total"] = df_soma.iloc[:, 1:].sum(axis=1)
@@ -105,7 +105,9 @@ if arquivo is not None:
                     <div class="metric-card" style="padding:6px; border-radius:10px;">
                         <h4 style="margin:0; font-size:14px;">{icone} {row['Usuario']}</h4>
                         <h3 style="margin:0; font-size:18px;">{int(row['Total'])}</h3>
-                  
+                        
+                        
+                    </div>
                     </div>
                     """,
                     unsafe_allow_html=True
@@ -114,7 +116,8 @@ if arquivo is not None:
         st.markdown("---")
         # --- Produção hora a hora por usuário ---
         st.markdown("### ⏱ Produção Hora a Hora por Usuário")
-
+        st.markdown("### ✅ Produção hora a hora Usuário")
+        icones = ["🟢", "🟡", "🔴"]
         # Define quantas horas por linha
         horas_por_linha = 6
 
@@ -122,7 +125,8 @@ if arquivo is not None:
             st.markdown(f"#### 👤 {linha['Usuario']}")
 
             # Pega todas as colunas de hora, exceto Usuario e Total
-            horas = [c for c in df_soma.columns if c not in ["Usuario", "Total", "06:00", "07:00", "08:00"]]
+            horas = [c for c in df_soma.columns if c not in [
+                "Usuario", "Total", "06:00", "07:00", "08:00"]]
 
             # Quebra em blocos de horas
             for i in range(0, len(horas), horas_por_linha):
@@ -130,9 +134,18 @@ if arquivo is not None:
                 cols = st.columns(len(bloco))
                 for j, hora in enumerate(bloco):
                     valor = int(linha[hora])
+
+                    # LOGICA ICONES
+                    if valor < 45:
+                        icone = "🔴"
+                    elif 45 <= valor <= 114:
+                        icone = "🟡"
+                    else:
+                        icone = "🟢"
+
                     with cols[j]:
                         st.markdown(
-                           f"""
+                            f"""
                            <div class="metric-card" style="
                                 background-color:#f7f7f7;
                                 color:#333;
@@ -145,12 +158,12 @@ if arquivo is not None:
                                 box-shadow: 1px 1px 4px rgba(0,0,0,0.08);
                                 text-align:center;
                             ">
-                                <h4 style="font-size:14px; margin:0;">{hora}</h4>
-                                <h2 style="font-size:18px; margin:0;">{valor}</h2>
+                                <div style="font-size:14px; margin-bottom:2px;">{hora}<span>{icone}</span></div>
+                                <div style="font-size:18px; font-weight:bold;">{valor} </div>
                             </div>
                             """,
                             unsafe_allow_html=True
-                    )
+                        )
 
         st.markdown("---")
 
