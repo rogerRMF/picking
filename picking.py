@@ -116,7 +116,7 @@ if arquivo is not None:
         st.markdown("---")
         # --- Produção hora a hora por usuário ---
         st.markdown("### ⏱ Produção Hora a Hora por Usuário")
-        st.markdown("### ✅ Produção hora a hora Usuário")
+       # st.markdown("### ✅ Produção hora a hora Usuário")
         icones = ["🟢", "🟡", "🔴"]
         # Define quantas horas por linha
         horas_por_linha = 6
@@ -136,7 +136,11 @@ if arquivo is not None:
                     valor = int(linha[hora])
 
                     # LOGICA ICONES
-                    if valor < 45:
+
+                    if valor == 0:
+                        icone = "⚪"
+
+                    elif valor < 45:
                         icone = "🔴"
                     elif 45 <= valor <= 114:
                         icone = "🟡"
