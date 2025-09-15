@@ -154,9 +154,9 @@ if arquivo is not None:
                                 width:70px;
                                 min-width:70px;
                                 max-width:70px;
-                                margin:auto;
-                                box-shadow: 1px 1px 4px rgba(0,0,0,0.08);
-                                text-align:center;
+                                margin:8px;
+                                box-shadow: 10px 10px 4px rgba(0,0,0,0.08);
+                                text-align:center;'
                             ">
                                 <div style="font-size:14px; margin-bottom:2px;">{icone}<span>{hora}</span></div>
                                 <div style="font-size:18px; font-weight:bold;">{valor} </div>
